@@ -256,7 +256,7 @@ const HomePage = () => {
           <div className="m-2 p-3">
             {products && products.length < total && (
               <button
-                className="btn loadmore"
+                className="btn  loadmore"
                 onClick={(e) => {
                   e.preventDefault();
                   setPage(page + 1);

@@ -12,6 +12,12 @@ const Login = () => {
     password: "",
   });
 
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
   const navigate = useNavigate();
   const location = useLocation();
   const [auth, setAuth] = useAuth();
@@ -54,14 +60,20 @@ const Login = () => {
               onChange={(e) => onChangeInput("email", e.target.value)}
             />
           </div>
-          <div className="mb-3">
+          <div className="mb-3 login-password">
             <input
-              type="password"
+              type={passwordVisible ? "text" : "password"}
               autoComplete="on"
               className="form-control"
               placeholder="Enter your Password"
               required
               onChange={(e) => onChangeInput("password", e.target.value)}
+            />
+            <img
+              src="/images/eye-close.png"
+              alt="eyeicon"
+              id="eyeicon"
+              onClick={togglePasswordVisibility}
             />
           </div>
           <div className="mb-3">

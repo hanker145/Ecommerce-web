@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import axios from "axios";
 import apiService from "../../app/apiService";
-
 import AdminMenu from "../../components/Layout/AdminMenu";
 import Layout from "../../components/Layout/Layout";
 import { useAuth } from "../../context/auth";
@@ -54,7 +52,7 @@ const AdminOrders = () => {
           <h1 className="text-center">All Orders</h1>
           {orders?.map((o, i) => {
             return (
-              <div className="border shadow">
+              <div className="border shadow" key={o._id}>
                 <table className="table text-center">
                   <thead>
                     <tr>

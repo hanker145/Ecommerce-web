@@ -14,7 +14,7 @@ const CreateProduct = () => {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [setShipping] = useState("");
+  const [shipping, setShipping] = useState("");
   const [photo, setPhoto] = useState("");
 
   //get all category
@@ -45,6 +45,7 @@ const CreateProduct = () => {
       productData.append("quantity", quantity);
       productData.append("photo", photo);
       productData.append("category", category);
+      productData.append("shipping", shipping);
       const { data } = await apiService.post(
         "/api/v1/product/products",
         productData

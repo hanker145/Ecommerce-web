@@ -63,3 +63,16 @@
 .error {
   color: red;
 }
+.login-password {
+  display: flex;
+  align-items: center;
+}
+
+.input-group img {
+  width: 35px;
+  cursor: pointer;
+}
+.icon {
+  float: right;
+  cursor: pointer;
+}

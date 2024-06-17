@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Layout from "../../components/Layout/Layout";
-import { useNavigate } from "react-router-dom";
 import apiService from "../../app/apiService";
 import toast from "react-hot-toast";
 import "../../styles/AuthStyles.css";
@@ -9,8 +8,6 @@ const ForgotPassword = () => {
   const [values, setValues] = useState({
     email: "",
   });
-
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,8 +21,8 @@ const ForgotPassword = () => {
       if (data?.status === "User Not Exists!!") {
         toast.error(data?.status);
       } else {
-        toast.success("Password reset email sent successfully!");
-        navigate("/reset-password"); // Navigate to the ResetPassword component
+        toast.success("Email has been sent");
+        window.location.reload();
       }
     } catch (error) {
       console.log(error);

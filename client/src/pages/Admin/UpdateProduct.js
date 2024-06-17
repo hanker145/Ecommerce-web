@@ -27,7 +27,7 @@ const UpdateProduct = () => {
     const getSingleProduct = async () => {
       try {
         const { data } = await apiService.get(
-          `/api/v1/product/get-product/${params.slug}`
+          `/api/v1/product/products/${params.slug}`
         );
         setName(data.product.name);
         setId(data.product._id);
@@ -76,10 +76,10 @@ const UpdateProduct = () => {
         productData
       );
       if (data?.success) {
-        toast.success(data?.message);
-      } else {
-        toast.error("Product Updated Successfully");
+        toast.success("Product Updated Successfully");
         navigate("/dashboard/admin/products");
+      } else {
+        toast.error("Something went wrong");
       }
     } catch (error) {
       toast.error("something went wrong");

@@ -3,7 +3,6 @@ import Layout from "../../components/Layout/Layout";
 import AdminMenu from "../../components/Layout/AdminMenu";
 import toast from "react-hot-toast";
 import apiService from "../../app/apiService";
-// import axios from "axios";
 import CategoryForm from "../../components/Form/CategoryForm";
 import { Modal } from "antd";
 
@@ -97,10 +96,7 @@ const CreateCategory = () => {
 
   return (
     <Layout title={"Dashboard - Create Category"}>
-      <div
-        className="container-fluid m-3 p-3 dashboard"
-        style={{ minHeight: "90vh" }}
-      >
+      <div className="container-fluid  dashboard" style={{ minHeight: "90vh" }}>
         <div className="row">
           <div className="col-md-3">
             <AdminMenu />
@@ -125,8 +121,8 @@ const CreateCategory = () => {
                 <tbody>
                   {categories?.map((c) => (
                     <>
-                      <tr>
-                        <td key={c._id}>{c.name}</td>
+                      <tr key={c._id}>
+                        <td>{c.name}</td>
                         <td>
                           <button
                             className="btn btn-primary ms-2"

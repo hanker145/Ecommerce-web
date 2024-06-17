@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "./../../components/Layout/Layout";
 import apiService from "../../app/apiService";
 import { useNavigate } from "react-router-dom";
@@ -9,9 +9,10 @@ import * as Yup from "yup";
 
 const Register = () => {
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
   const togglePasswordVisibility = () => {
-    setShowPassword((prevShowPassword) => !prevShowPassword);
+    setPasswordVisible(!passwordVisible);
   };
 
   const formik = useFormik({
@@ -91,29 +92,27 @@ const Register = () => {
               <div className="error error-red">{formik.errors.email}</div>
             )}
           </div>
-          <div className="mb-3 password-input-row">
-            <input
-              type={showPassword ? "text" : "password"}
-              {...formik.getFieldProps("password")}
-              className="form-control password-input"
-              id="password"
-              placeholder="Enter Your Password"
-            />
-            <button
-              type="button"
-              className="btn btn-secondary password-toggle-btn"
-              onClick={togglePasswordVisibility}
-            >
-              {showPassword ? (
-                <span>&#x1F441;</span> // Show password symbol (👁️)
-              ) : (
-                <span>&#x1F576;</span> // Hide password symbol (🕶️)
-              )}
-            </button>
+          <div className="mb-3">
+            <div className="input-group">
+              <input
+                type={passwordVisible ? "text" : "password"}
+                {...formik.getFieldProps("password")}
+                className="form-control "
+                id="password"
+                placeholder="Enter Your Password"
+              />
+              <img
+                className="icon"
+                src="/images/eye-close.png"
+                alt="eyeicon"
+                id="eyeicon"
+                onClick={togglePasswordVisibility}
+              />
+            </div>
+            {formik.touched.password && formik.errors.password && (
+              <div className="error error-red">{formik.errors.password}</div>
+            )}
           </div>
-          {formik.touched.password && formik.errors.password && (
-            <div className="error error-red">{formik.errors.password}</div>
-          )}
           <div className="mb-3">
             <input
               type="text"

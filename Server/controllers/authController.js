@@ -141,13 +141,18 @@ export const forgotPasswordController = async (req, res) => {
 
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
-        console.log(error);
+        return res.status(500).json({ error: "Error in sending email" });
       } else {
-        console.log("Email sent: " + info.response);
+        return res.json({ status: "Email has been sent" });
       }
     });
-    console.log(link);
-  } catch (error) {}
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      message: "Error in forgot password",
+      error: error.message,
+    });
+  }
 };
 
 //reset password

@@ -16,6 +16,15 @@ const CartPage = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  // total items in cart
+  const totalItems = () => {
+    let count = 0;
+    cart.forEach((item) => {
+      count += item.quantity;
+    });
+    return count;
+  };
+
   // total price
   const totalPrice = () => {
     try {
@@ -117,6 +126,7 @@ const CartPage = () => {
       toast.error("Payment Failed");
     }
   };
+
   return (
     <Layout>
       <div
@@ -131,7 +141,7 @@ const CartPage = () => {
                 : `Hello  ${auth?.token && auth?.user?.name}`}
               <p className="text-center">
                 {cart?.length
-                  ? `You Have ${cart.length} items in your cart ${
+                  ? `You Have ${totalItems()} items in your cart ${
                       auth?.token ? "" : "please login to checkout !"
                     }`
                   : " Your Cart Is Empty"}
@@ -233,7 +243,7 @@ const CartPage = () => {
                         })
                       }
                     >
-                      Plase Login to checkout
+                      Please Login to checkout
                     </button>
                   )}
                 </div>
