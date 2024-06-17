@@ -34,7 +34,7 @@ const ResetPassword = () => {
         `${process.env.REACT_APP_API}/api/v1/auth/reset-password/${id}/${token}`,
         { password: values.password }
       );
-      if (res && res.status == 200) {
+      if (res && res.status === 200) {
         toast.success(res.data.message);
         navigate("/login");
       } else {
