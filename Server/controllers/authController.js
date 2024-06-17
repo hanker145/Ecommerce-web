@@ -193,7 +193,7 @@ export const confirmResetPasswordController = async (req, res) => {
         },
       }
     );
-    res.redirect(`${process.env.API_HOST}/login`);
+    res.json({ status: 200, message: "Password Reset Successful" });
   } catch (error) {
     console.log(error);
     res.json({ status: "Something Went Wrong" });
