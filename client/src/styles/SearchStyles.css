@@ -1,0 +1,42 @@
+/* SearchStyles.css */
+
+.search-page {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #ffdee9;
+  background-image: linear-gradient(0deg, #ffdee9 0%, #b5fffc 100%);
+}
+
+.search-page h1 {
+  color: hsl(0, 91%, 45%);
+  font-family: "Playfair Display", serif;
+}
+
+.search-page .card-name-price {
+  background-color: rgba(128, 128, 128, 0.097);
+  width: 18rem;
+}
+
+.search-page .card img:hover {
+  transform: scale(0.9);
+}
+.search-page .card-price {
+  color: green;
+  font-weight: bold;
+}
+
+.search-page .card-text {
+  color: rgb(90, 89, 89);
+  height: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+}
+
+.search-page .card-img-top {
+  height: 300px !important;
+}
+
+.search-page .card-description {
+  padding-top: 10px;
+}
