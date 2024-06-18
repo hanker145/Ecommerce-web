@@ -28,7 +28,7 @@ const CategoryProduct = () => {
 
   return (
     <Layout>
-      <div className="container-fluid category" style={{ minHeight: "100vh" }}>
+      <div className="container-fluid category" style={{ minHeight: "90vh" }}>
         <h4 className="text-center mb-2">Category - {category?.name}</h4>
         <h6 className="text-center">{products?.length} result found </h6>
         <div className="row">

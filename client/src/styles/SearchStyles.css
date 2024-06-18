@@ -1,7 +1,6 @@
 /* SearchStyles.css */
 
 .search-page {
-  display: flex;
   flex-wrap: wrap;
   background-color: #ffdee9;
   background-image: linear-gradient(0deg, #ffdee9 0%, #b5fffc 100%);
@@ -17,6 +16,15 @@
   width: 18rem;
 }
 
+.search-page .button {
+  border-radius: 0;
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
 .search-page .card img:hover {
   transform: scale(0.9);
 }
@@ -27,10 +35,6 @@
 
 .search-page .card-text {
   color: rgb(90, 89, 89);
-  height: 60px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 1.4;
 }
 
 .search-page .card-img-top {

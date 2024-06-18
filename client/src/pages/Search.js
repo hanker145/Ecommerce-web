@@ -42,7 +42,10 @@ const Search = () => {
 
   return (
     <Layout title={"Search results"}>
-      <div className="container-fluid">
+      <div
+        className="container-fluid search-page"
+        style={{ minHeight: "100vh" }}
+      >
         <div className="text-center">
           <h1>Search results</h1>
           <h6>
@@ -50,7 +53,7 @@ const Search = () => {
               ? "No product found"
               : `Found ${values?.results.length} items`}
           </h6>
-          <div className="d-flex flex-wrap justify-content-center mt-4 search-page">
+          <div className="d-flex flex-wrap justify-content-center ">
             {values?.results.map((p) => (
               <div
                 key={p.id}
