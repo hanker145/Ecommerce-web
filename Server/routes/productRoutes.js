@@ -11,6 +11,7 @@ import {
   productListController,
   productPhotoController,
   relatedProductController,
+  restoreProductController,
   searchProductController,
   updateProductController,
 } from "../controllers/productController.js";
@@ -76,10 +77,13 @@ router.post("/products/filters", productFiltersController);
 router.get("/products/count", productCountController);
 
 // Get paginated product list
-router.get("/products/page/:page", productListController);
+router.get("/products/page/:page?", productListController);
 
 // Search products
 router.get("/search/:keyword", searchProductController);
+
+//restore productg
+router.put("/restore/:id", restoreProductController);
 
 // Get related products
 router.get("/products/:pid/related/:cid", relatedProductController);

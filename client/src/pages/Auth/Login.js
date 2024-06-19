@@ -56,7 +56,6 @@ const Login = () => {
               type="email"
               className="form-control"
               placeholder="Enter your Email"
-              required
               onChange={(e) => onChangeInput("email", e.target.value)}
             />
           </div>
@@ -66,7 +65,6 @@ const Login = () => {
               autoComplete="on"
               className="form-control"
               placeholder="Enter your Password"
-              required
               onChange={(e) => onChangeInput("password", e.target.value)}
             />
             <img

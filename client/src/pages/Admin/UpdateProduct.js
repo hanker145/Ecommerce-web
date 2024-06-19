@@ -21,6 +21,7 @@ const UpdateProduct = () => {
   const [photo, setPhoto] = useState("");
   const [id, setId] = useState("");
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false);
 
   //get single product
   useEffect(() => {
@@ -36,6 +37,7 @@ const UpdateProduct = () => {
         setQuantity(data.product.quantity);
         setShipping(data.product.shipping);
         setCategory(data.product.category._id);
+        setIsDeleted(data.product.isDeleted); // Set the isDeleted state
       } catch (error) {
         toast.error("Something went wrong while fetching the product");
       }
@@ -86,16 +88,33 @@ const UpdateProduct = () => {
     }
   };
 
+  //restore
+  const handleRestore = async () => {
+    try {
+      const { data } = await apiService.put(`/api/v1/product/restore/${id}`, {
+        isDeleted: false,
+      });
+      if (data?.success) {
+        toast.success("Product Restored Successfully");
+        navigate("/dashboard/admin/products");
+        setIsDeleted(false);
+      } else {
+        toast.error("Something went wrong");
+      }
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
+  };
+
   //delete a product
   const handleDelete = async () => {
     try {
       closeDeleteModal();
-      const response = await apiService.delete(
+      const { data } = await apiService.delete(
         `/api/v1/product/products/${id}`
       );
-      const { data } = response;
       if (data?.success) {
-        toast.success("Product Deleted Successfully");
+        toast.success("Product Marked as Deleted Successfully");
         navigate("/dashboard/admin/products");
       } else {
         toast.error("Something went wrong");
@@ -104,6 +123,7 @@ const UpdateProduct = () => {
       toast.error("Something went wrong");
     }
   };
+
   const showDeleteModal = () => {
     setDeleteModalVisible(true);
   };
@@ -234,6 +254,13 @@ const UpdateProduct = () => {
                 <button className="btn btn-danger" onClick={showDeleteModal}>
                   DELETE PRODUCT
                 </button>
+                <div className="mt-3">
+                  {isDeleted && (
+                    <button className="btn btn-primary" onClick={handleRestore}>
+                      RESTORE PRODUCT
+                    </button>
+                  )}
+                </div>
               </div>
               <Modal
                 title="Delete Product"
@@ -242,15 +269,15 @@ const UpdateProduct = () => {
                 footer={[
                   <Button
                     key="cancel"
-                    className=" btn btn-primary "
+                    className="btn btn-primary"
                     onClick={closeDeleteModal}
                   >
                     Cancel
                   </Button>,
                   <Button
                     key="delete"
-                    className=" btn btn-danger"
-                    onClick={handleDelete}
+                    className="btn btn-danger"
+                    onClick={handleDelete} // Update the onClick handler
                   >
                     Delete
                   </Button>,

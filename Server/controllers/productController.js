@@ -113,15 +113,28 @@ export const productPhotoController = async (req, res) => {};
 //delete product
 export const deleteProductController = async (req, res) => {
   try {
-    await productModel.findByIdAndDelete(req.params.pid);
+    const product = await productModel.findByIdAndUpdate(
+      req.params.pid,
+      {
+        isDeleted: true,
+      },
+      { new: true }
+    );
+    if (!product) {
+      return res.status(404).send({
+        success: false,
+        message: "Product not found",
+      });
+    }
+
     res.status(200).send({
       success: true,
-      message: "Product deleted successfully",
+      message: "Product marked as deleted successfully",
     });
   } catch (error) {
     res.status(500).send({
       success: false,
-      message: "Error while deleting product",
+      message: "Error while marking product as deleted",
       error,
     });
   }
@@ -183,6 +196,7 @@ export const productFiltersController = async (req, res) => {
     let args = {};
     if (checked.length > 0) args.category = checked;
     if (radio.length) args.price = { $gte: radio[0], $lte: radio[1] };
+    args.isDeleted = { $ne: true }; // Add this line to filter out deleted products
     const products = await productModel.find(args);
     res.status(200).send({
       success: true,
@@ -217,10 +231,10 @@ export const productCountController = async (req, res) => {
 //product list
 export const productListController = async (req, res) => {
   try {
-    const perPage = 9;
+    const perPage = 12;
     const page = req.params.page ? req.params.page : 1;
     const products = await productModel
-      .find({})
+      .find({ isDeleted: { $ne: true } }) // Exclude products with isDeleted: true
       .skip((page - 1) * perPage)
       .limit(perPage)
       .sort({ createdAt: -1 });
@@ -242,9 +256,14 @@ export const searchProductController = async (req, res) => {
   try {
     const { keyword } = req.params;
     const results = await productModel.find({
-      $or: [
-        { name: { $regex: keyword, $options: "i" } },
-        { description: { $regex: keyword, $options: "i" } },
+      $and: [
+        {
+          $or: [
+            { name: { $regex: keyword, $options: "i" } },
+            { description: { $regex: keyword, $options: "i" } },
+          ],
+        },
+        { isDeleted: { $ne: true } }, // Exclude products with isDeleted: true
       ],
     });
 
@@ -257,7 +276,6 @@ export const searchProductController = async (req, res) => {
     });
   }
 };
-
 //related product
 export const relatedProductController = async (req, res) => {
   try {
@@ -298,5 +316,31 @@ export const productCategoryController = async (req, res) => {
       error,
       message: "Error while getting product",
     });
+  }
+};
+// restore product controller
+export const restoreProductController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { isDeleted } = req.body;
+
+    // Call the productService to update the product by ID
+    const updatedProduct = await productModel.findByIdAndUpdate(id, {
+      isDeleted,
+    });
+
+    // Check if the update was successful
+    if (updatedProduct) {
+      // Send a success response
+      res.json({ success: true, message: "Product restored successfully" });
+    } else {
+      // Send an error response
+      res
+        .status(400)
+        .json({ success: false, message: "Failed to restore product" });
+    }
+  } catch (error) {
+    // Send an error response
+    res.status(500).json({ success: false, message: "Something went wrong" });
   }
 };
