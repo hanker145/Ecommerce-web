@@ -284,6 +284,7 @@ export const relatedProductController = async (req, res) => {
       .find({
         category: cid,
         _id: { $ne: pid },
+        isDeleted: { $ne: true }, // Exclude items with isDeleted: true
       })
       .limit(3)
       .populate("category");
@@ -293,8 +294,8 @@ export const relatedProductController = async (req, res) => {
     });
   } catch (error) {
     res.status(400).send({
-      success: true,
-      message: "error while getting related product",
+      success: false,
+      message: "Error while getting related products",
       error,
     });
   }
