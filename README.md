@@ -13,7 +13,8 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 # About the project
 
-A demo application for the final test of FWT course.
+A demo application for the final test of FWT course - a ecommerce website.
+
 
 ### Installation
 
@@ -27,7 +28,7 @@ A demo application for the final test of FWT course.
 
 2. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/hanker145/Final-test.git
    ```
 3. Install NPM packages
    ```sh
@@ -53,4 +54,11 @@ A demo application for the final test of FWT course.
 
 -Can login into admin account. (user: phamvangiau2411@gmail.com  , password: Vangiau2@)
 
-The demo app is running on: https://ecommercedemotest1.netlify.app
+
+## Contact
+
+Pham Van Giau - phamvangiau2311@gmail.com
+
+Project Link: https://github.com/hanker145/Final-test
+
+Deployed site: https://ecommercedemotest1.netlify.app/
