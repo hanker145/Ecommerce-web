@@ -1,6 +1,6 @@
 # Final test demo app
   
-A demo application for the final test of FWT course.
+## A demo application for the final test of FWT course.
 
 Run npm install
 
