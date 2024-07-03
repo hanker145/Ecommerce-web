@@ -1,13 +1,13 @@
-  Final test demo app
+# Final test demo app
+  
 A demo application for the final test of FWT course.
 
-The env file is already included in the link on Github
 
 Run npm install
 
 Run npm install cloudinary
 
-The demo web have the following features:
+## The demo web have the following features:
 Login/Logout
 Register, change password with email authorization, search product.
 Card/Paypal payment.
