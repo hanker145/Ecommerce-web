@@ -4,10 +4,8 @@
 
 Run npm install
 
-Run npm install cloudinary
-
 ## The demo web have the following features:
--Login/Logout
+-Login/Logout as admin or user
 
 -Register, change password with email authorization, search product.
 
@@ -19,4 +17,4 @@ Run npm install cloudinary
 
 -Can login into admin account. (user: phamvangiau2411@gmail.com  , password: Vangiau2@)
 
-The demo app is running on: [https://ecommercedemotest1.netlify.app/](https://ecommercedemotest1.netlify.app/)
+The demo app is running on: https://ecommercedemotest1.netlify.app
